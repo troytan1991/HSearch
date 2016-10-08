@@ -14,7 +14,8 @@
 <link href="./global/bootstrap-3.3.5/css/bootstrap.min.css"
 <link href="./global/bootstrap-3.3.5/css/bootstrap-theme.min.css"
 	rel="stylesheet">
-<link href="./global/bootstrap-3.3.5/plugins/bootstrap-toastr/toastr.min.css" />
+<link
+	href="./global/bootstrap-3.3.5/plugins/bootstrap-toastr/toastr.min.css" />
 <link href="./custom/main.css" rel="stylesheet">
 </head>
 
@@ -31,20 +32,16 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand"
-					href="./hsearch.html">HSearch</a>
+				<a class="navbar-brand" href="./hsearch.html">HSearch</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><a
-						href="#">Home</a></li>
+					<li class="active"><a href="#">Home</a></li>
 					<li><a href="#">About</a></li>
-					<li><a
-						href="mailto:chaochao_tan@saic-gm.com">Contact</a></li>
-					<li class="dropdown"><a
-						href="#"
-						class="dropdown-toggle" data-toggle="dropdown"
-						aria-expanded="false">Other <span class="caret"></span></a>
+					<li><a href="mailto:chaochao_tan@saic-gm.com">Contact</a></li>
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" aria-expanded="false">Other <span
+							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="#">Action1</a></li>
 							<li><a href="#">Action2</a></li>
@@ -70,29 +67,23 @@
 			</ol>
 			<div class="carousel-inner" role="listbox">
 				<div class="item">
-					<img alt="First slide [1140x500]"
-						src="./custom/1.png"
+					<img alt="First slide [1140x500]" src="./custom/1.png"
 						data-holder-rendered="true">
 				</div>
 				<div class="item">
-					<img alt="Second slide [1140x500]"
-						src="./custom/2.png"
+					<img alt="Second slide [1140x500]" src="./custom/2.png"
 						data-holder-rendered="true">
 				</div>
 				<div class="item active">
-					<img alt="Third slide [1140x500]"
-						src="./custom/3.png"
+					<img alt="Third slide [1140x500]" src="./custom/3.png"
 						data-holder-rendered="true">
-				</div>	
+				</div>
 			</div>
-			<a class="left carousel-control"
-				role="button" data-slide="prev"	
+			<a class="left carousel-control" role="button" data-slide="prev"
 				href="#carousel-example-generic"> <span
-				class="glyphicon glyphicon-chevron-left"
-				></span> <span
+				class="glyphicon glyphicon-chevron-left"></span> <span
 				class="sr-only">Previous</span>
-			</a> <a class="right carousel-control"
-				role="button" data-slide="next"
+			</a> <a class="right carousel-control" role="button" data-slide="next"
 				href="#carousel-example-generic"> <span
 				class="glyphicon glyphicon-chevron-right"></span> <span
 				class="sr-only">Next</span>
@@ -117,12 +108,12 @@
 					<h4 class="modal-title" id="popupTitle"></h4>
 				</div>
 				<div class="modal-body" id="popupBody">
-						<div class="row">
-							<label class="col-sm-3 control-label">文件路径</label>
-							<input class="col-sm-8 " id="docPath" placeholder="E:/HSearch/docs" />
-						</div>
-						<label class="control-label">执行结果</label>
-						<textarea class="form-control" id="msgbox" rows="10"></textarea>
+					<div class="row">
+						<label class="col-sm-3 control-label">文件路径</label> <input
+							class="col-sm-8 " id="docPath" placeholder="/HSearch/docs-index" />
+					</div>
+					<label class="control-label">执行结果</label>
+					<textarea class="form-control" id="msgbox" rows="10"></textarea>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">关闭
@@ -138,27 +129,26 @@
 <script src="./global/jquery-3.1.0.min.js"></script>
 <script src="./global/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script>
-	function updateDb(docPath){
+	function updateDb(docPath) {
+		docPath = "/HSearch/docs";
 		$.ajax({
 			type : "GET",
-			url : "./api/indexManage/storeDocs?docPath="
-					+ docPath,
+			url : "./api/indexManage/storeDocs?docPath=" + docPath,
 			dataType : "json",
 			async : true,
 			contentType : "application/json",
 			success : function(data) {
-				var bodyStr = "<p>更新文档：" + data.updateNum
-						+ "</p>" + "<p>删除文档："
-						+ data.deleteNum + "</p>"
-						+ "</p>新增文档：" + data.addNum
+				var bodyStr = "<p>更新文档：" + data.updateNum + "</p>" + "<p>删除文档："
+						+ data.deleteNum + "</p>" + "</p>新增文档：" + data.addNum
 						+ "</p>";
 				$("#msgbox").html(bodyStr);
-				
+
 			}
 		});
 	}
-	
-	function updateIndex(indexPath){
+
+	function updateIndex(indexPath) {
+		indexPath = "/HSearch/index"
 		$.ajax({
 			type : "GET",
 			url : "./api/indexManage/initIndex",
@@ -171,39 +161,41 @@
 		});
 	}
 	
+	function cleanPopupDiv(){
+		$("#msgbox").val("");
+		$("#docPath").val("");
+	}
 </script>
 <script>
-	var updateType = 0;	//0:updateDb,  1:updateIndex
-	jQuery(document).ready(
-			function() {
-				$("#updateCommit").click(function(){
-					console.log("update");
-					var path = $("#docPath")[0].value;
-					if(!!path){
-						$("#msgbox").html("执行更新中，请稍后。。。");
-						if(updateType == 0){
-							updateDb(path);
-						}else if(updateType ==1){
-							updateIndex(path);
-						}
-					}else{
-						$("#msgbox").html("请输入路径！");
-					}
-				});
-				
-				$("#updateDb").click(
-						function() {
-							console.log("test..");
-							$("#popupTitle").html("更新数据库");
-							updateType = 0;
-							$("#popupModal").modal("show");
-						});
-				$("#updateIndex").click(function() {
-					console.log("test index");
-					$("#popupTitle").html("更新索引");
-					updateType = 1;
-					$("#popupModal").modal("show");
-				});	
-			});
+	var updateType = 0; //0:updateDb,  1:updateIndex
+	jQuery(document).ready(function() {
+		$("#updateCommit").click(function() {
+			console.log("update");
+			var path = $("#docPath")[0].value;
+			if (!!path) {
+				$("#msgbox").html("执行更新中，请稍后。。。");
+				if (updateType == 0) {
+					updateDb(path);
+				} else if (updateType == 1) {
+					updateIndex(path);
+				}
+			} else {
+				$("#msgbox").html("请输入路径！");
+			}
+		});
+
+		$("#updateDb").click(function() {
+			cleanPopupDiv();
+			$("#popupTitle").html("更新数据库");
+			updateType = 0;
+			$("#popupModal").modal("show");
+		});
+		$("#updateIndex").click(function() {
+			cleanPopupDiv();
+			$("#popupTitle").html("更新索引");
+			updateType = 1;
+			$("#popupModal").modal("show");
+		});
+	});
 </script>
 </html>

@@ -8,6 +8,7 @@ public class FileInfo {
 	private String path;
 	private String content;
 	private Date updateTime;
+	
 	public String getTitle() {
 		return title;
 	}
