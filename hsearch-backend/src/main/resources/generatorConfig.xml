@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+	<classPathEntry
+		location="E:\java\M2\repository\oracle\ojdbc14\10.2.0.1.0\ojdbc14-10.2.0.1.0.jar" />
+	<context id="TUTOR" targetRuntime="MyBatis3Simple"
+		defaultModelType="flat">
+		<commentGenerator>
+			<property name="suppressAllComments" value="false" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+		<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver"
+			connectionURL="jdbc:oracle:thin:@10.203.31.10:1521:dv046" userId="OWSGMTUTOR"
+			password="Pass1234">
+		</jdbcConnection>
+
+		<javaTypeResolver
+			type="org.mybatis.generator.internal.types.JavaTypeResolverDefaultImpl">
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.sgm.hsearch.entity"
+			targetProject=".\src\main\java">
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="myBatis"
+			targetProject=".\src\main\resources">
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.sgm.hsearch.dao" targetProject=".\src\main\java">
+		</javaClientGenerator>
+
+		<table tableName="HS_TM_USER" domainObjectName="User">
+			<generatedKey column="ID" sqlStatement="SELECT SQ_TM_USER.NEXTVAL FROM DUAL" />
+			<columnOverride column="ENABLE" javaType="Boolean" />
+		</table>
+		<table tableName="HS_TT_DOCUMENT" domainObjectName="HsDocument">
+			<generatedKey column="ID" sqlStatement="SELECT SQ_TT_DOCUMENT.NEXTVAL FROM DUAL" />
+			<columnOverride column="ENABLE" javaType="Boolean" />
+		</table>
+	</context>
+</generatorConfiguration>

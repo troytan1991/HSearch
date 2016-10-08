@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta content="always" name="referrer">
+<meta name="theme-color" content="#2932e1">
+<link rel="icon" href="custom/HS_icon.png">
+<link rel="styleSheet" href="./custom/hsearch.css">
+<link rel="stylesheet" type="text/css" href="./custom/message.css">
+<title>HSearch</title>
+
+<style type="text/css" media="screen">
+#swfEveryCookie {
+	visibility: hidden
+}
+</style>
+
+</head>
+<body link="#0000cc">
+
+
+	<div id="wrapper" class="wrapper_l">
+
+		<div id="head">
+			<div class="head_wrapper">
+				<div class="s_form">
+					<div class="s_form_wrapper soutu-env-nomac soutu-env-result">
+						<div id="lg">
+							<img hidefocus="true" src="./custom/HSearch_logo.png" width="270"
+								height="129">
+						</div>
+						<a href="http://localhost:8080/hsearch-web/main.html"
+							id="result_logo"><img src="./custom/HSearch_logo.png"
+							alt="HSearch首页" title="HSearch首页"></a>
+						<form name="f" class="fm">
+							<span class="bg s_ipt_wr quickdelete-wrap"> <input id="kw"
+								class="s_ipt" value="" maxlength="255" autocomplete="off">
+							</span> <span class="bg s_btn_wr"> <input type="button"
+								id="submitSearch" value="搜索一下" class="bg s_btn"></span>
+						</form>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="s_tab" id="s_tab">
+			<a id="categoryAll" href="#" class="underline"
+				onmousedown="categoryClick(this.id)">ALL</a> <a id="categoryMql"
+				href="#" onmousedown="categoryClick(this.id)">MQL</a> <a
+				id="categoryWor" href="#" onmousedown="categoryClick(this.id)">工单</a>
+			<a id="categoryReboot" href="#" onmousedown="categoryClick(this.id)">监控</a>
+			<a id="categoryOther" href="#" onmousedown="categoryClick(this.id)">其它</a>
+		</div>
+		<div id="wrapper_wrapper">
+			<div class="head_nums_cont_outer OP_LOG">
+				<div class="head_nums_cont_inner">
+					<div class="nums" id="resultNum">HSearch为您找到相关结果约0个</div>
+				</div>
+			</div>
+
+			<div id="content_left">
+				<div class="result c-container" id="161"></div>
+			</div>
+			<div id="rs">
+				<table cellpadding="0"></table>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="./global/jquery-3.1.0.min.js"></script>
+<script>
+	var hashMatch = document.location.href.match(/#+(.*wd=[^&].+)/);
+	if (hashMatch && hashMatch[0] && hashMatch[1]) {
+		document.location.replace("http://" + location.host + "/s?"
+				+ hashMatch[1]);
+	}
+	var bds = {
+		comm : {
+			loginAction : []
+		},
+		se : {},
+		su : {
+			urStatic : "https://ss1.bdstatic.com/5aV1bjqh_Q23odCf",
+			urdata : [],
+			urSendClick : function() {
+			}
+		},
+		util : {},
+		use : {},
+		_base64 : {
+			domain : "https://ss0.bdstatic.com/9uN1bjq8AAUYm2zgoY3K/",
+			b64Exp : -1,
+			pdc : -1
+		}
+	};
+	var al_arr = [];
+	var selfOpen = window.open;
+	eval("var open = selfOpen;");
+	var isIE = navigator.userAgent.indexOf("MSIE") != -1 && !window.opera;
+	var E = bds.ecom = {};
+	bds.util.domain = (function() {
+		var list = {
+
+		};
+		var get = function(url) {
+			if (location.protocol === "http") {
+				return url;
+			}
+			var reg = /^(http[s]?:\/\/)?([^\/]+)(.*)/, matches = url.match(reg);
+			url = list.hasOwnProperty(matches[2])
+					&& (list[matches[2]] + matches[3]) || url;
+			return url;
+		}, set = function(kdomain, vdomain) {
+			list[kdomain] = vdomain;
+		};
+		return {
+			get : get,
+			set : set
+		}
+	})();
+</script>
+<script type="text/javascript" data-for="result">
+	if (!window.A) {
+		function G(a) {
+			return document.getElementById(a)
+		}
+
+		window.bds = window.bds || {};
+		bds.util = bds.util || {};
+		bds.util.getWinWidth = function() {
+			return window.document.documentElement.clientWidth
+		};
+		bds.util.setContainerWidth = function() {
+			var f = G("container"), b = G("wrapper"), a = function(c, g) {
+				g.className = g.className.replace(c, "")
+			}, e = function(c, g) {
+				g.className = (g.className + " " + c).replace(/^\s+/g, "")
+			}, d = function(c, g) {
+				return c.test(g.className)
+			};
+			if (bds.util.getWinWidth() < 1207) {
+				if (f) {
+					a(/\bcontainer_l\b/g, f);
+					if (!d(/\bcontainer_s\b/, f)) {
+						e("container_s", f)
+					}
+				}
+				if (b) {
+					a(/\bwrapper_l\b/g, b);
+					if (!d(/\bwrapper_s\b/, b)) {
+						e("wrapper_s", b)
+					}
+				}
+				bds.comm.containerSize = "s"
+			} else {
+				if (f) {
+					a(/\bcontainer_s\b/g, f);
+					if (!d(/\bcontainer_l\b/, f)) {
+						e("container_l", f)
+					}
+				}
+				if (b) {
+					a(/\bwrapper_s\b/g, b);
+					if (!d(/\bwrapper_l\b/, b)) {
+						e("wrapper_l", b)
+					}
+				}
+				bds.comm.containerSize = "l"
+			}
+		};
+		(function() {
+			var c = [], f = false;
+			var b = function(h, g) {
+				try {
+					h.call(g)
+				} catch (i) {
+				}
+			}, d = function() {
+				this.ids = [];
+				this.has = true;
+				this.list = [];
+				this.logs = [];
+				this.loadTimes = [];
+				this.groupData = [];
+				this.mergeFns = [];
+				this._currentContainer = null
+			};
+			window.A = bds.aladdin = {};
+			b(d, window.A);
+			bds.ready = function(g) {
+				if (typeof g != "function") {
+					return
+
+				}
+				if (f) {
+					b(g)
+				} else {
+					c.push(g)
+				}
+			};
+			bds.doReady = function() {
+				f = true;
+				while (c.length) {
+					b(c.shift())
+				}
+			};
+			bds.clearReady = function() {
+				f = false;
+				c = []
+			};
+			A.__reset = d;
+			var a = (function() {
+				var g = document.getElementsByTagName("script");
+				return function() {
+					var i = g[g.length - 1];
+					if (window.currentScriptElem) {
+						i = window.currentScriptElem
+					}
+					var h = i;
+					while (h) {
+						if (h.className) {
+							if (/(?:^|\s)result(?:-op)?(?:$|\s)/
+									.test(h.className)) {
+								if (tplname = h.getAttribute("tpl")) {
+									return h
+								}
+							}
+						}
+						h = h.parentNode
+					}
+				}
+			})(), e = function(g, j, h) {
+				var l;
+				if (!g.initIndex) {
+					l = {
+						container : g,
+						data : {},
+						handlers : []
+					};
+					g.initIndex = A.groupData.length + 1;
+					A.groupData.push(l)
+				} else {
+					l = A.groupData[g.initIndex - 1]
+				}
+				if (typeof j == "function") {
+					l.handlers.push(j)
+				} else {
+					if (typeof j == "object") {
+						for ( var m in j) {
+							if (j.hasOwnProperty(m)) {
+								l.data[m] = j[m]
+							}
+						}
+					} else {
+						l.data[j] = h
+					}
+				}
+			};
+			A.init = A.setup = function(i, h) {
+				if (i === undefined || i === null) {
+					return
+
+				}
+				var g = A._currentContainer || a();
+				if (!g) {
+					return
+
+				}
+				e(g, i, h)
+			};
+			A.merge = function(h, g) {
+				A.mergeFns.push({
+					tplName : h,
+					fn : g
+				})
+			}
+		})()
+	}
+	function ns_c_pj(a, c) {
+		var b = encodeURIComponent(window.document.location.href), f = "", d = "", j = "", i = bds
+				&& bds.comm && bds.comm.did ? bds.comm.did : "";
+		wd = bds.comm.queryEnc, nsclickDomain = bds && bds.util
+				&& bds.util.domain ? bds.util.domain
+				.get("http://nsclick.baidu.com") : "http://nsclick.baidu.com",
+				img = window["BD_PS_C" + (new Date()).getTime()] = new Image(),
+				src = "";
+		for (v in a) {
+			switch (v) {
+			case "title":
+				d = encodeURIComponent(a[v].replace(/<[^<>]+>/g, ""));
+				break;
+			case "url":
+				d = encodeURIComponent(a[v]);
+				break;
+			default:
+				d = a[v]
+			}
+			f += v + "=" + d + "&"
+		}
+		j = "&mu=" + b;
+		src = nsclickDomain
+				+ "/v.gif?pid=201&"
+				+ (c || "")
+				+ f
+				+ "path="
+				+ b
+				+ "&wd="
+				+ wd
+				+ "&rsv_sid="
+				+ (bds.comm.ishome && bds.comm.indexSid ? bds.comm.indexSid
+						: bds.comm.sid) + "&rsv_did=" + i + "&t="
+				+ new Date().getTime();
+		if (typeof Cookie != "undefined" && typeof Cookie.get != "undefined") {
+			if (Cookie.get("H_PS_SKIN") && Cookie.get("H_PS_SKIN") != "0") {
+				src += "&rsv_skin=1"
+			}
+		} else {
+			var h = "";
+			try {
+				h = parseInt(document.cookie.match(new RegExp(
+						"(^| )H_PS_SKIN=([^;]*)(;|$)"))[2])
+			} catch (g) {
+			}
+			if (h && h != "0") {
+				src += "&rsv_skin=1"
+			}
+		}
+		img.src = src;
+		return true
+	}
+	function ns_c(b, a) {
+		if (a === true) {
+			return ns_c_pj(b, "pj=www&rsv_sample=1&")
+		}
+		return ns_c_pj(b, "pj=www&")
+	};
+</script>
+<script>
+	var categoryParam = "ALL";
+	var keywordParam = null;
+
+	function formatDate(timeStr) {
+		var date = new Date(timeStr);
+
+		var year = date.getFullYear();
+		var month = date.getMonth() + 1;
+		var date = date.getDate();
+		return year + "年" + month + "月" + date;
+	}
+
+	function addSearchResultMsg(resultMsg) {
+
+		$("#content_left").empty();
+		$("#resultNum").html(resultMsg);
+	}
+	function addResultItem(item) {
+		var resultTemplate = "<div class='result c-container' id='[itemId]'>"
+				+ "<h3 class='t'><a href='./docDetail.html?docId=[docUrl]' target='_blank'>[docTitle]</a></h3>"
+				+ "<div class='c-abstract'><span class='newTimeFactor_before_abs m'>[updateTime]&nbsp;-&nbsp;</span>[highlightText]</div>"
+				+ "<div class='f13'><a target='_blank' href='[docPath]' class='c-showurl' style='text-decoration:none;'>[docViewPath]...&nbsp;</a>"
+				+ "<span class='c-icons-outer'><span class='c-icons-inner'></span></span>&nbsp;-&nbsp;"
+				+ "<a href='#' class='m'>快照</a>"
+				+ "<span class='c-pingjia'>&nbsp;-&nbsp;<a data-from='ps_pc4'>[visitCount]次访问</a></span>"
+				+ "</div></div>";
+		var resultHtml = resultTemplate.replace("[itemId]", item.id).replace(
+				"[docUrl]", item.id).replace("[docTitle]", item.title).replace(
+				"[updateTime]", item.updatedOn).replace("[highlightText]",
+				item.highlightText).replace("[docPath]", item.path).replace(
+				"[docViewPath]",
+				item.path.substring(item.path.lastIndexOf("docs") + 5))
+				.replace("[visitCount]", item.visitCount);
+		$("#content_left").append(resultHtml);
+	}
+	function commitSearch() {
+		addSearchResultMsg("Hsearch正在为您搜索中。。。");
+		keywordParam = $("#kw")[0].value.replace(new RegExp("/","gm")," ");
+		if (!!keywordParam && !!keywordParam) {
+			$.ajax({
+				type : "GET",
+				url : "./api/search/getSearchResults/" + categoryParam + "/"
+						+ keywordParam,
+				dataType : "json",
+				async : true,
+				contentType : "application/json",
+				success : function(data) {
+					addSearchResultMsg("HSearch为您找到相关结果约" + data.length + "个");
+					$.each(data, function(i, item) {
+						addResultItem(item);
+					});
+				}
+			});
+		}
+	}
+
+	function categoryClick(category) {
+		categoryParam = $("#" + category).html();
+		keywordParam = $("#kw")[0].value;
+		$("#s_tab>a").removeClass("underline");
+		$("#" + category).addClass("underline");
+		if (!!keywordParam && !!categoryParam) {
+			console.log("search commit:" + keywordParam + "-" + categoryParam);
+			commitSearch();
+		} else {
+			console.log("search undo");
+			addSearchResultMsg("很抱歉，HSearch没有找到相关记录！");
+		}
+	}
+
+	jQuery(document).ready(function() {
+		$("#submitSearch").click(function() {
+			commitSearch();
+		});
+
+		$("#kw").keydown(function(event) {
+			if (event.which == 13) {
+				event.preventDefault();
+				commitSearch();
+			}
+		});
+
+		//         $("#openFileLink").click(function(event){
+		//         	event.preventDefault();
+		//         	window.open("file://sisqn211/operationlog/hsearch/docs/MQL/GSIP/2016%20GSIP%20FAT.docx");
+		//         });
+	});
+</script>
+</html>

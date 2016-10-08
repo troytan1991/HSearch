@@ -1,0 +1,12 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/java/com/sgm/hsearch/service/SearchFileServiceImpl.java=UTF-8
+encoding//src/main/java/com/sgm/hsearch/utils/DocumentIndex.java=UTF-8
+encoding//src/main/java/com/sgm/hsearch/utils/ExcelReader.java=UTF-8
+encoding//src/main/java/com/sgm/hsearch/utils/FileReader.java=UTF-8
+encoding//src/main/java/com/sgm/hsearch/utils/FileService.java=UTF-8
+encoding//src/main/java/com/sgm/hsearch/utils/PDFReader.java=UTF-8
+encoding//src/main/java/com/sgm/hsearch/utils/PPTReader.java=UTF-8
+encoding//src/main/java/com/sgm/hsearch/utils/TextReader.java=UTF-8
+encoding//src/main/resources=UTF-8
+encoding//src/test/java=UTF-8
