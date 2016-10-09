@@ -14,6 +14,7 @@ public class ExecuteResult {
 	private int deleteNum;
 	private int addNum;
 	
+	
 	public List<String> getUpdateDocs() {
 		return updateDocs;
 	}
