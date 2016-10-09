@@ -11,12 +11,6 @@
 <link rel="stylesheet" type="text/css" href="./custom/message.css">
 <title>HSearch</title>
 
-<style type="text/css" media="screen">
-#swfEveryCookie {
-	visibility: hidden
-}
-</style>
-
 </head>
 <body link="#0000cc">
 
@@ -69,6 +63,15 @@
 			</div>
 		</div>
 	</div>
+<!-- 	<div id="page"> -->
+<!-- 		<strong><span class="pc">1</span></strong><a href="#"> <span -->
+<!-- 			class="pc">2</span></a><a href="#"><span class="pc">3</span></a><a -->
+<!-- 			href="#"><span class="pc">4</span></a><a href="#"><span -->
+<!-- 			class="pc">5</span></a><a href="#"><span class="pc">6</span></a><a -->
+<!-- 			href="#"><span class="pc">7</span></a><a href="#"><span -->
+<!-- 			class="pc">8</span></a><a href="#"><span class="pc">9</span></a><a -->
+<!-- 			href="#"><span class="pc">10</span></a><a href="#">下一页&gt;</a> -->
+<!-- 	</div> -->
 </body>
 <script type="text/javascript" src="./global/jquery-3.1.0.min.js"></script>
 <script>
@@ -194,6 +197,12 @@
 				if (typeof g != "function") {
 					return
 
+					
+
+										
+
+					
+
 				}
 				if (f) {
 					b(g)
@@ -263,10 +272,22 @@
 				if (i === undefined || i === null) {
 					return
 
+					
+
+										
+
+					
+
 				}
 				var g = A._currentContainer || a();
 				if (!g) {
 					return
+
+					
+
+										
+
+					
 
 				}
 				e(g, i, h)
@@ -341,7 +362,15 @@
 <script>
 	var categoryParam = "ALL";
 	var keywordParam = null;
-
+	
+	function getQueryString(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null)
+			return unescape(r[2]);
+		return null;
+	}
+	
 	function formatDate(timeStr) {
 		var date = new Date(timeStr);
 
@@ -376,7 +405,7 @@
 	}
 	function commitSearch() {
 		addSearchResultMsg("Hsearch正在为您搜索中。。。");
-		keywordParam = $("#kw")[0].value.replace(new RegExp("/","gm")," ");
+		keywordParam = $("#kw")[0].value.replace(new RegExp("/", "gm"), " ");
 		if (!!keywordParam && !!keywordParam) {
 			$.ajax({
 				type : "GET",
@@ -420,6 +449,12 @@
 				commitSearch();
 			}
 		});
+		var keyword = getQueryString("keyword");
+		if(!!keyword){
+			console.log(decodeURI(keyword));
+			$("#kw")[0].value = decodeURI(keyword);
+			commitSearch();
+		}
 
 		//         $("#openFileLink").click(function(event){
 		//         	event.preventDefault();
