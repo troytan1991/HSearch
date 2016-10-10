@@ -146,7 +146,7 @@
 				var bodyStr = "<p>更新文档：" + data.updateNum + "</p>" + "<p>删除文档："
 						+ data.deleteNum + "</p>" + "</p>新增文档：" + data.addNum
 						+ "</p>";
-				$("#msgbox").html(bodyStr);
+				$("#msgbox").val(bodyStr);
 
 			}
 		});
@@ -162,7 +162,7 @@
 			async : true,
 			contentType : "application/json",
 			success : function(data) {
-				$("#msgbox").html(data);
+				$("#msgbox").val(data);
 			}
 		});
 	}
@@ -176,17 +176,16 @@
 	var updateType = 0; //0:updateDb,  1:updateIndex
 	jQuery(document).ready(function() {
 		$("#updateCommit").click(function() {
-			console.log("update");
 			var path = $("#docPath")[0].value;
 			if (!!path) {
-				$("#msgbox").html("执行更新中，请稍后。。。");
+				$("#msgbox").val("执行更新中，请稍后。。。");
 				if (updateType == 0) {
 					updateDb(path);
 				} else if (updateType == 1) {
 					updateIndex(path);
 				}
 			} else {
-				$("#msgbox").html("请输入路径！");
+				$("#msgbox").val("请输入路径！");
 			}
 		});
 

@@ -91,7 +91,7 @@ public class SearchFileServiceImpl implements SearchFileService {
 			BooleanQuery query = new BooleanQuery.Builder().add(pathQuery, Occur.MUST).add(titleQuery, Occur.SHOULD)
 					.add(contentQuery, Occur.SHOULD).add(kwQuery, Occur.SHOULD).add(abstactQuery, Occur.SHOULD).build();
 			BooleanQuery.setMaxClauseCount(Integer.MAX_VALUE);
-			TopDocs topDocs = searcher.search(query, 200);
+			TopDocs topDocs = searcher.search(query, 60);
 			for (ScoreDoc match : topDocs.scoreDocs) {
 				Document doc = searcher.doc(match.doc);
 				//-----test results
